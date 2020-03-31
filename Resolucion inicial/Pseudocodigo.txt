@@ -1,0 +1,40 @@
+#Pseudocodigo
+
+clase Prenda{
+    #Atributos 
+    publico cadena Tipo {get;}
+    publico entero PrecioBase {get; set;}
+    publico estado EstadoDePrenda  {get; set;}
+
+    #Metodos
+    publico entero Precio() = EstadoDePrenda.CalcularPrecio(descuento);
+    publico 
+}
+
+enum Estado{
+    
+}
+
+clase ventas{
+    publico lista<Prenda> prendas    // Sobre la cantidad, no me queda claro si es la cantidad de cada prenda o el total de prendas
+    publico datetime dia
+    publico Metodo metodoDePago
+    publico cuotas                          // cuando la venta es en efectivo es 1
+    
+    public entero PrecioFinal() {
+        
+    }
+}
+
+enum metodoDePago{
+    efectivo{
+        entero AplicarRecargo(lista<Prenda> prendas, int cuotas) {
+            retorna prendas.stream.foreach(p => p.Precio());
+        }
+    },
+    tarjeta{
+        entero AplicarRecargo(int precio, int cuotas) {
+            retorna precio + (cuotas * constantes.coeficienteDeRecargo + ) 
+        }
+    }
+}

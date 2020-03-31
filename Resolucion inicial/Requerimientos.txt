@@ -1,0 +1,5 @@
+Saber el precio de venta de una prenda y sus tipos
+Calcular el precio de una prenda segun su estado
+Registrar ventas
+Calcular ganacias diarias
+Aplicar recargo segun metodo de pago

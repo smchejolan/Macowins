@@ -1,0 +1,3 @@
+Prenda:
+    Cada instancia de esta clase representa una prenda, tiene como atributos el precio base, el estado y el tipo de prenda.
+    El precio se representa con un entero, el estado con una instancia de alguno de los estados
