@@ -10,6 +10,6 @@ public class Promocion implements IEstado{
 	}
 	
 	public double CalcularPrecio(double precio) {
-		return precio;
+		return precio - this.descuento;
 	}
 }

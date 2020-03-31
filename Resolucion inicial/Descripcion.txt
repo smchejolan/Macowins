@@ -17,7 +17,8 @@ Interfaz Estado y las clases que la implementan:
     Cada clase que implente el estado debe tener el metodo de calculo de precio. Se pueden agregar nuevos estados a futuro.
     El estado nuevo devuelve el mismo precio que le llega.
     El estado liquidacion devuelve la mitad del precio que le llega.
-    Y el estado promocion devuelve el precio base menos un valor seteado. (No es apb).
+    Y el estado promocion devuelve el precio base menos un valor seteado. (No es apb). Cuando se quiera setear una
+    promocion se debe indicar el descuento al momento de crear la instancia.
 
 Venta: 
     Cada instancia tiene la fecha de venta, las prendas, y la cantidad de cada prenda. Tambien el metodo de pago.
@@ -26,4 +27,5 @@ Venta:
 Interfaz Metodo de pago y las clases que la implementan
     Cada clase que implente el metodo de pago debe tener el metodo de AplicarRecargo. Se pueden agregar nuevos metodos de pago a futuro.
     El metodo efectivo no aplica recargo.
-    El metodo tarjeta aplica una formula.
+    El metodo tarjeta aplica una formula. Cuando se quiera usar tarjeta se debe indicar cuantas cuotas al momento
+    de crear la instancia.
