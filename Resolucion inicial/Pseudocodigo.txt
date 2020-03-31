@@ -2,39 +2,66 @@
 
 clase Prenda{
     #Atributos 
-    publico cadena Tipo {get;}
-    publico entero PrecioBase {get; set;}
-    publico estado EstadoDePrenda  {get; set;}
+    publico TipoDePrenda Tipo
+    publico real PrecioBase 
+    publico Estado EstadoDePrenda  
 
     #Metodos
-    publico entero Precio() = EstadoDePrenda.CalcularPrecio(descuento);
-    publico 
+    publico real Precio() = EstadoDePrenda.CalcularPrecio(PrecioBase);
 }
 
-enum Estado{
-    
+interfaz Estado{
+    publico CalcularPrecio(real PrecioBase)
 }
 
-clase ventas{
-    publico lista<Prenda> prendas    // Sobre la cantidad, no me queda claro si es la cantidad de cada prenda o el total de prendas
-    publico datetime dia
+clase Nuevo implementa Estado{
+    publico CalcularPrecio(real PrecioBase) = PrecioBase
+}
+
+clase Liquidacion implementa Estado{
+    publico CalcularPrecio(real PrecioBase) = PrecioBase * 0.5
+}
+
+clase Promocion implementa Estado{
+    publico real descuento
+
+    cosntructor Promocion(descuento){ this.descuento = descuento}
+
+    publico CalcularPrecio(real PrecioBase) = PrecioBase - descuento
+}
+
+enum TipoDePrenda {Saco, Pantalon, Camisa}
+
+enum Constantes {CoefRecargo{ publico real valor() = 0.1 }}
+
+clase venta{
+    publico lista<Tupla<Prenda, real>> prendas    // Sobre la cantidad, no me queda claro si es la cantidad de cada prenda o el total de prendas
+    publico datetime Fecha
     publico Metodo metodoDePago
-    publico cuotas                          // cuando la venta es en efectivo es 1
-    
-    public entero PrecioFinal() {
-        
+  
+    publico real PrecioFinal() {
+        return prendas.stream().mapearADouble(p => p.get0().precio() * p.get1()).sumar() + metodoDePago.AplicarRecargo(prendas)        
     }
 }
 
-enum metodoDePago{
-    efectivo{
-        entero AplicarRecargo(lista<Prenda> prendas, int cuotas) {
-            retorna prendas.stream.foreach(p => p.Precio());
-        }
-    },
-    tarjeta{
-        entero AplicarRecargo(int precio, int cuotas) {
-            retorna precio + (cuotas * constantes.coeficienteDeRecargo + ) 
-        }
+interfaz metodoDePago{
+    publico real AplicarRecargo(Lista<Tupla<Prenda,real>>)
+}
+
+clae efectivo implementa metodoDePago{
+    publico real AplicarRecargo(Lista<Tupla<Prenda,real>> prendas){
+        return 0
+    }
+}
+
+interfaz tarjeta implementa metodoDePago{
+    publico real coutas
+
+    cosntructor tarjeta(coutas){ this.coutas = coutas}
+
+    publico real AplicarRecargo(Lista<Tupla<Prenda,int>> prendas){
+        real precioRecargoInicial = prendas.stream().mapearADouble(p => p.get0().precio() * 0.01 * p.get1()).sumar()
+        
+        return coutas * Constantes.CoefRecargo.valor() + precioConRecargoInicial
     }
 }

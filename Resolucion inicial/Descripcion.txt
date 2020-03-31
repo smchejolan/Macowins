@@ -1,3 +1,29 @@
+Ideas desechadas
+
+Tenia pensado usar enums para el estado pero con la promocion me parecio imposible mantener el polimorfismo ahi.
+
+---------------
+
+Modelado prosa:
+
+El coeficiente de recargo lo declaro como un enum que podria contener es y otras constantes.
+
 Prenda:
     Cada instancia de esta clase representa una prenda, tiene como atributos el precio base, el estado y el tipo de prenda.
-    El precio se representa con un entero, el estado con una instancia de alguno de los estados
+    El precio se representa con un numero real, el estado con una instancia de alguna clase que cumpla con la interfaz de estado, el tipo
+    lo hice usando enum.
+
+Interfaz Estado y las clases que la implementan:
+    Cada clase que implente el estado debe tener el metodo de calculo de precio. Se pueden agregar nuevos estados a futuro.
+    El estado nuevo devuelve el mismo precio que le llega.
+    El estado liquidacion devuelve la mitad del precio que le llega.
+    Y el estado promocion devuelve el precio base menos un valor seteado. (No es apb).
+
+Venta: 
+    Cada instancia tiene la fecha de venta, las prendas, y la cantidad de cada prenda. Tambien el metodo de pago.
+    Las prendas y su cantidad esta implentada como una tupla, dentro de una lista.
+
+Interfaz Metodo de pago y las clases que la implementan
+    Cada clase que implente el metodo de pago debe tener el metodo de AplicarRecargo. Se pueden agregar nuevos metodos de pago a futuro.
+    El metodo efectivo no aplica recargo.
+    El metodo tarjeta aplica una formula.
